@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  projects Project[]
+}
+
+model Project {
+  id     String @id @default(uuid())
+  name   String
+  description String
+  repository String
+  slug String @unique
+  isAvailable Boolean @default(false)
+  status String @default("UNDER_DEVELOPMENT") // UNDER_DEVELOPMENT COMPLETED
+  dateProject DateTime @default(now())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  images Image[]
+  technologiesLinker TechnologiesLinker[]
+}
+
+model Image {
+  id String @id @default(uuid())
+  description String
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  imageUrl String
+  filename String
+  createdAt DateTime @default(now())
+}
+
+model Languages {
+  id String @id @default(uuid())
+  name String
+  icon String
+  slug String @unique
+  technologiesLinker TechnologiesLinker[]
+}
+
+model TechnologiesLinker {
+  id String @id @default(uuid())
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  languageId String
+  language Languages @relation(fields: [languageId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+// Visitor is saved on LocalStorage, this means that the visitor will only be valid on the same client.
+
+model Visitor {
+  id String @id @default(uuid())
+  firstVisit DateTime @default(now())
+  visits Visit[]
+}
+
+model Visit {
+  id String @id @default(uuid())
+  visitDate DateTime @default(now())
+  visitorId String
+  visitor Visitor @relation(fields: [visitorId], references: [id])
+  userAgent String?
+  special_code String @default("")
+}
