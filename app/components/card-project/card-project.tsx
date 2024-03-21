@@ -25,6 +25,15 @@ export default function CardProject({ project, isDashboard }: IProps) {
     return formatedDate;
   }
 
+  function formatDescription(description: string): string {
+    const limit = 50;
+    const truncatedDescription = description.substring(0, limit);
+
+    return description.length >= limit
+      ? truncatedDescription + "..."
+      : truncatedDescription;
+  }
+
   return (
     <Card className="w-full max-w-xs rounded-xl border shadow-sm overflow-hidden">
       <div className="relative aspect-[1.5]">
@@ -63,7 +72,9 @@ export default function CardProject({ project, isDashboard }: IProps) {
             <i className="devicon-github-original dark:colored text-3xl flex items-center"></i>
           </Link>
         </section>
-        <p className="text-sm text-gray-500 mt-2">{project.description}</p>
+        <p className="text-sm text-gray-500 mt-2">
+          {formatDescription(project.description)}
+        </p>
         <div className="flex gap-4 flex-wrap justify-center items-center mt-4">
           {project.technologiesLinker?.map((tech) => (
             <Link
@@ -80,7 +91,10 @@ export default function CardProject({ project, isDashboard }: IProps) {
       <CardFooter>
         {isDashboard && (
           <section className="w-full flex justify-center">
-            <Link href={`/dashboard/project/${project.id}`} className="hover:underline">
+            <Link
+              href={`/dashboard/project/${project.id}`}
+              className="hover:underline"
+            >
               Ver projeto
             </Link>
           </section>
