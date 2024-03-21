@@ -49,4 +49,8 @@ export default class ProjectRepository implements IProjectRepository {
 
         return project;
     }
+
+    public async count(): Promise<number> {
+        return await prisma.project.count();
+    }
 }

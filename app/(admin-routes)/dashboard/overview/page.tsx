@@ -12,14 +12,17 @@ import FormAddLanguage from "./_components/form-add-language";
 import LanguageRepository from "@/app/repositories/language-repository";
 import AddLanguageDialog from "../languages/_components/add-language-dialog";
 import { PlusIcon } from "lucide-react";
+import ProjectRepository from "@/app/repositories/project-repository";
 
 export default async function Dashboard() {
   const visitRepository = new VisitRepository();
   const languageRepository = new LanguageRepository();
+  const projectRepository = new ProjectRepository();
 
-  const [countVisitsData, countLanguages] = await Promise.all([
+  const [countVisits, countLanguages, countProjects] = await Promise.all([
     visitRepository.count(),
-    languageRepository.countLanguages()
+    languageRepository.countLanguages(),
+    projectRepository.count()
   ])
 
   return (
@@ -35,7 +38,7 @@ export default async function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{countVisitsData}</div>
+              <div className="text-2xl font-bold">{countVisits}</div>
             </CardContent>
 
             <CardFooter>
@@ -50,7 +53,7 @@ export default async function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{countVisitsData}</div>
+              <div className="text-2xl font-bold">{countProjects}</div>
             </CardContent>
 
             <CardFooter>
