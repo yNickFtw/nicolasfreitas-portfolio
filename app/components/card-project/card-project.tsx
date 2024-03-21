@@ -28,12 +28,10 @@ export default function CardProject({ project, isDashboard }: IProps) {
   return (
     <Card className="w-full max-w-xs rounded-xl border shadow-sm overflow-hidden">
       <div className="relative aspect-[1.5]">
-      <div className="flex h-full justify-center items-center">
+        {project.images!.length < 1 ? (
+          <div className="flex h-full justify-center items-center">
             <p>Sem imagens</p>
           </div>
-
-        {/* {project.images!.length < 1 ? (
-          
         ) : (
           <Image
             alt="Project image"
@@ -46,7 +44,7 @@ export default function CardProject({ project, isDashboard }: IProps) {
             }}
             width="400"
           />
-        )} */}
+        )}
       </div>
       <div className="p-6">
         <div className="flex items-center gap-4 text-sm">
@@ -58,10 +56,7 @@ export default function CardProject({ project, isDashboard }: IProps) {
         <section className="flex flex-row justify-between items-center">
           <h3 className="text-xl font-bold mt-4">{project.name}</h3>
           <Link
-            href={{
-              protocol: "https",
-              hostname: project.repository,
-            }}
+            href={project.repository}
             target="_blank"
             rel="noopener noreferrer"
           >

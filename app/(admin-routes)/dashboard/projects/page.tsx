@@ -5,9 +5,9 @@ import ProjectRepository from "@/app/repositories/project-repository";
 import CardProject from "@/app/components/card-project/card-project";
 
 export default async function Projects() {
-  const userRepository = new ProjectRepository();
+  const projectRepository = new ProjectRepository();
 
-  const projects = await userRepository.findAllProjects();
+  const projects = await projectRepository.findAllProjects();
 
   return (
     <>
