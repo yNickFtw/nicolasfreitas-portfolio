@@ -1,3 +1,4 @@
+import { nextAuthOptions } from "@/app/options/nextAuthOptions";
 import TechnologieLinkerRepository from "@/app/repositories/technologie-linker-repository";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +7,7 @@ const technologyLinkerRepository = new TechnologieLinkerRepository();
 
 export async function POST(request: NextRequest) {
     try {
-        const session = await getServerSession();
+        const session = await getServerSession(nextAuthOptions);
 
         if (!session) {
             return NextResponse.json({ message: 'Não autorizado' }, { status: 401 })

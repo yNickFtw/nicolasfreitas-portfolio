@@ -1,3 +1,4 @@
+import { nextAuthOptions } from "@/app/options/nextAuthOptions";
 import TechnologieLinkerRepository from "@/app/repositories/technologie-linker-repository";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -14,7 +15,7 @@ export async function DELETE(request: NextRequest, { params }: IParams): Promise
             return NextResponse.json({ message: "Parâmetros inválidos." })
         }
 
-        const session = await getServerSession();
+        const session = await getServerSession(nextAuthOptions);
 
         if (!session) {
             return NextResponse.json({ message: "Você não tem autorização para usar esta rota" }, { status: 401 })
