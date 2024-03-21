@@ -1,7 +1,6 @@
 import { prisma } from "@/prisma";
 import { ILanguage } from "../interfaces/models/ILanguage";
 import { ILanguageRepository } from "../interfaces/repositories/ILanguageRepository";
-import { IApiResponse } from "../interfaces/IApiResponse";
 
 export default class LanguageRepository implements ILanguageRepository {
     public async create(language: ILanguage): Promise<void> {
