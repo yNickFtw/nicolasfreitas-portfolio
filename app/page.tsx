@@ -3,9 +3,10 @@ import CardProject from "./components/card-project/card-project";
 import Header from "./components/header";
 import { Hero } from "./components/hero";
 import TrackerAnalysis from "./tracker-analysis/tracker-analysis";
+import { nextAuthOptions } from "./options/nextAuthOptions";
 
 export default async function Home() {
-  const session = await getServerSession();
+  const session = await getServerSession(nextAuthOptions);
 
   return (
     <>
