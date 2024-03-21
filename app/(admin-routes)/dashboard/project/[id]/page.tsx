@@ -18,7 +18,6 @@ import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -48,9 +47,11 @@ export default async function ProjectById({ params }: IProps) {
   const technologies =
     await technologyLinkerRepository.findAllTecnologiesByProjectId(params.id);
 
-  const languagesIds = technologies.map((tec) => {
-    return tec.languageId;
-  });
+  let languagesIds: string[] = []
+
+  for (let index = 0; index < technologies.length; index++) {
+    languagesIds.push(technologies[index].languageId)
+  }
 
   const languages = await languageRepository.findAllLanguagesExceptByLanguageId(
     languagesIds
@@ -119,7 +120,9 @@ export default async function ProjectById({ params }: IProps) {
                 )}
                 {technologies.length === 0 && (
                   <section>
-                    <h2 className="text-sm text-center">Sem tecnologias adicionas por enquanto</h2>
+                    <h2 className="text-sm text-center">
+                      Sem tecnologias adicionas por enquanto
+                    </h2>
                   </section>
                 )}
               </CardContent>
