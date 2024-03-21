@@ -1,7 +1,6 @@
 import HeaderDashboard from "@/app/components/header-dashboard";
 import ProjectRepository from "@/app/repositories/project-repository";
 import TechnologieLinkerRepository from "@/app/repositories/technologie-linker-repository";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -95,27 +94,34 @@ export default async function ProjectById({ params }: IProps) {
               </CardHeader>
 
               <CardContent>
-                <Table>
-                  <TableCaption>Todas as linguages do projeto</TableCaption>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Nome</TableHead>
-                      <TableHead>Slug</TableHead>
-                      <TableHead>Icon</TableHead>
-                      <TableHead></TableHead>
-                    </TableRow>
-                  </TableHeader>
+                {technologies.length > 0 && (
+                  <Table>
+                    <TableCaption>Todas as linguages do projeto</TableCaption>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Nome</TableHead>
+                        <TableHead>Slug</TableHead>
+                        <TableHead>Icon</TableHead>
+                        <TableHead></TableHead>
+                      </TableRow>
+                    </TableHeader>
 
-                  <TableBody>
-                    {technologies.map((tech) => (
-                      <TableRowLanguages
-                      technologyLinkerId={tech.id}
-                        language={tech.language!}
-                        key={tech.id}
-                      />
-                    ))}
-                  </TableBody>
-                </Table>
+                    <TableBody>
+                      {technologies.map((tech) => (
+                        <TableRowLanguages
+                          technologyLinkerId={tech.id}
+                          language={tech.language!}
+                          key={tech.id}
+                        />
+                      ))}
+                    </TableBody>
+                  </Table>
+                )}
+                {technologies.length === 0 && (
+                  <section>
+                    <h2 className="text-sm text-center">Sem tecnologias adicionas por enquanto</h2>
+                  </section>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

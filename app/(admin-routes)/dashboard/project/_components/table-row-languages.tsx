@@ -28,6 +28,7 @@ import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
+import Link from "next/link";
 
 interface IProps {
   technologyLinkerId: string;
@@ -90,10 +91,11 @@ export default function TableRowLanguages({
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem onClick={() => console.log(language)}>
-                Ver detalhes
-              </DropdownMenuItem>
-
+              <Link href={`/dashboard/language/${language.id}`}>
+                <DropdownMenuItem>
+                  Ver detalhes
+                </DropdownMenuItem>
+              </Link>
               <AlertDialogTrigger onClick={() => setOpen(true)}>
                 <DropdownMenuItem className="text-red-600">
                   Remover tecnologia

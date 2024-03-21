@@ -22,11 +22,8 @@ export default function TrackerAnalysis({ session }: IProps) {
       const userAgent = navigator.userAgent;
 
       if (session) {
-        console.log("TRACKER SESSION");
-
         return;
       } else {
-        console.log("TRACKER NO SESSION");
 
         let special_code: string | null;
 

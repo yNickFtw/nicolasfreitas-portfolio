@@ -30,6 +30,5 @@ export default class FirebaseService implements IFirebaseService {
 
 
         await deleteObject(storageRef);
-        console.log(`Imagem ${filename}.png na pasta ${folder} excluída com sucesso.`);
     }
 }

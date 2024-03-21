@@ -1,10 +1,8 @@
 import HeaderDashboard from "@/app/components/header-dashboard";
-import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import AddProjectDialog from "./_components/add-project-dialog";
 import ProjectRepository from "@/app/repositories/project-repository";
 import CardProject from "@/app/components/card-project/card-project";
-import { getServerSession } from "next-auth";
 
 export default async function Projects() {
   const userRepository = new ProjectRepository();

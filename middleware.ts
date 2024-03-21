@@ -12,8 +12,6 @@ export default async function middleware(request: NextRequest) {
     const isProtectedRoute = protectedRoutes.some((prefix) => request.nextUrl.pathname.startsWith(prefix))
 
     if (!token && isProtectedRoute) {
-        console.log("PROTEGIDA");
-
         return NextResponse.redirect(new URL('/user/login', request.url));
     }
 }
