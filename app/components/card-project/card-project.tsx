@@ -1,7 +1,6 @@
 "use client";
 
 import { IProject } from "@/app/interfaces/models/IProject";
-import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,8 +11,6 @@ interface IProps {
 }
 
 export default function CardProject({ project, isDashboard }: IProps) {
-  
-
   function formatDate(date: string | Date): string {
     const dateInstance = new Date(date);
 
@@ -31,10 +28,12 @@ export default function CardProject({ project, isDashboard }: IProps) {
   return (
     <Card className="w-full max-w-xs rounded-xl border shadow-sm overflow-hidden">
       <div className="relative aspect-[1.5]">
-        {project.images!.length < 1 ? (
-          <div className="flex h-full justify-center items-center">
+      <div className="flex h-full justify-center items-center">
             <p>Sem imagens</p>
           </div>
+
+        {/* {project.images!.length < 1 ? (
+          
         ) : (
           <Image
             alt="Project image"
@@ -47,7 +46,7 @@ export default function CardProject({ project, isDashboard }: IProps) {
             }}
             width="400"
           />
-        )}
+        )} */}
       </div>
       <div className="p-6">
         <div className="flex items-center gap-4 text-sm">
