@@ -1,6 +1,6 @@
 import DropdownUser from "@/app/components/dropdown-user";
-import { MainNav } from "@/app/components/main-nav";
-import MobileMenuDashboard from "../mobile-menu";
+import { MainNavDashboard } from "@/app/components/main-nav-dashboard";
+import MobileMenuDashboard from "../mobile-menu-dashboard";
 
 export default async function HeaderDashboard() {
   return (
@@ -16,7 +16,7 @@ export default async function HeaderDashboard() {
             </h3>
 
             <div className="hidden md:block">
-              <MainNav />
+              <MainNavDashboard />
             </div>
           </div>
 

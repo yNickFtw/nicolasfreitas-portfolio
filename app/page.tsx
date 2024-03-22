@@ -15,9 +15,13 @@ export default async function Home() {
       <div className="flex flex-col">
         <Header isLogged={!!session} />
         <Hero />
-        
-
       </div>
+
+
+
+      <section id="knowledge" className="mt-[500px]">
+        <h1>teste</h1>
+      </section>
     </main>
     </>
   );

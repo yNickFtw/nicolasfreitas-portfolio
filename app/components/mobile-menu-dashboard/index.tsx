@@ -10,7 +10,7 @@ import {
 import { AlignJustify } from "lucide-react";
 import Link from "next/link";
 
-export default function MobileMenu() {
+export default function MobileMenuDashboard() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -19,17 +19,17 @@ export default function MobileMenu() {
       <DropdownMenuContent className="mr-3">
         <DropdownMenuLabel>Barra de navegação</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <Link href={"/#whos-me"}>
-          <DropdownMenuItem>Quem eu sou?</DropdownMenuItem>
+        <Link href={"/dashboard/overview"}>
+          <DropdownMenuItem>Visão geral</DropdownMenuItem>
         </Link>
-        <Link href={"/#knowledge"}>
-          <DropdownMenuItem>Conhecimentos</DropdownMenuItem>
+        <Link href={"/dashboard/visitors"}>
+          <DropdownMenuItem>Visitantes</DropdownMenuItem>
         </Link>
-        <Link href={"/#projects"}>
+        <Link href={"/dashboard/projects"}>
           <DropdownMenuItem>Projetos</DropdownMenuItem>
         </Link>
-        <Link href={"/#talk-to-me"}>
-          <DropdownMenuItem>Fale comigo</DropdownMenuItem>
+        <Link href={"/dashboard/languages"}>
+          <DropdownMenuItem>Linguagens</DropdownMenuItem>
         </Link>
         <ModeToggle fullscreen={true} />
       </DropdownMenuContent>

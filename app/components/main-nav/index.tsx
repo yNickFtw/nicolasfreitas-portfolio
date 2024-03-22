@@ -1,46 +1,32 @@
-'use client'
+import { ModeToggle } from "@/components/toggle-theme";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-import Link from "next/link"
+interface IProps {
+  isLogged: boolean;
+}
 
-import { cn } from "@/lib/utils"
-import { usePathname } from "next/navigation"
-
-export function MainNav({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
-
-  const pathname = usePathname();
-
+export default function MainNav({ isLogged }: IProps) {
   return (
-    <nav
-      className={cn("flex items-center gap-3", className)}
-      {...props}
-    >
-      <Link
-        href="/dashboard/overview"
-        className={`text-sm font-medium transition-colors ${pathname! === "/dashboard/overview" ? "dark:text-zinc-50" : "text-zinc-500"} hover:text-zinc-950 dark:hover:text-zinc-50`}
-      >
-        Visão geral
-      </Link>
-      <Link
-        href="/dashboard/visitors"
-        className={`text-sm font-medium transition-colors ${pathname! === "/dashboard/visitors" ? "dark:text-zinc-50" : "text-zinc-500"} hover:text-zinc-950 dark:hover:text-zinc-50`}
-      >
-        Visitantes
-      </Link>
-      <Link
-        href="/dashboard/projects"
-        className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard/project") ? "dark:text-zinc-50" : "text-zinc-500"} hover:text-zinc-950 dark:hover:text-zinc-50`}
-      >
-        Projetos
-      </Link>
-      <Link
-        href="/dashboard/languages"
-        className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard/language") ? "dark:text-zinc-50" : "text-zinc-500"} hover:text-zinc-950 dark:hover:text-zinc-50`}
-      >
-        Linguagens
-      </Link>
-    </nav>
-  )
+    <section className="flex items-center gap-2">
+      <a href={"/#whos-me"}>
+        <Button variant={"ghost"}>Quem eu sou?</Button>
+      </a>
+      <a href={"/#knowledge"}>
+        <Button variant={"ghost"}>Conhecimentos</Button>
+      </a>
+      <a href={"/#projects"}>
+        <Button variant={"ghost"}>Projetos</Button>
+      </a>
+      <a href={"/#talk-to-me"}>
+        <Button variant={"ghost"}>Fale comigo</Button>
+      </a>
+      {isLogged && (
+        <Link href={"/dashboard/overview"}>
+          <Button variant={"ghost"}>Dashboard</Button>
+        </Link>
+      )}
+      <ModeToggle fullscreen={false} />
+    </section>
+  );
 }
