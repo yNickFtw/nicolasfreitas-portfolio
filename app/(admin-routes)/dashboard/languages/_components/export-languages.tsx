@@ -14,7 +14,7 @@ import { ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ILanguage } from "@/app/interfaces/models/ILanguage";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ArrowLeft, Copy, Download, Upload } from "lucide-react";
+import { ArrowLeft, Download, Upload } from "lucide-react";
 
 interface IProps {
   triggerText: string;
@@ -33,7 +33,6 @@ export default function ExportLanguages({
   const [languagesObjSelected, setLanguagesObjSelected] = useState<ILanguage[]>(
     []
   );
-  const [loading, setLoading] = useState<boolean>(false);
   const [exported, setExported] = useState<boolean>(false);
 
   const router = useRouter();

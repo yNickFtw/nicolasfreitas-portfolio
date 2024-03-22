@@ -18,12 +18,14 @@ import {
   Table,
   TableBody,
   TableCaption,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import TableRowLanguages from "../_components/table-row-languages";
 import ContainerImages from "../_components/container-images";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface IProps {
   params: {
@@ -47,10 +49,10 @@ export default async function ProjectById({ params }: IProps) {
   const technologies =
     await technologyLinkerRepository.findAllTecnologiesByProjectId(params.id);
 
-  let languagesIds: string[] = []
+  let languagesIds: string[] = [];
 
   for (let index = 0; index < technologies.length; index++) {
-    languagesIds.push(technologies[index].languageId)
+    languagesIds.push(technologies[index].languageId);
   }
 
   const languages = await languageRepository.findAllLanguagesExceptByLanguageId(

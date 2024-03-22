@@ -35,10 +35,11 @@ export default function AddLanguageToProjectDialog({
 }: IProps) {
   const [languagesSelected, setLanguagesSelected] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const technologyService = new TechnologyService();
 
-  const router = useRouter()
+  const router = useRouter();
 
   function handleSelectLanguage(languageId: string): void {
     let newLanguagesSelected;
@@ -70,8 +71,8 @@ export default function AddLanguageToProjectDialog({
 
       router.refresh();
 
-      setLanguagesSelected([])
-      setLoading(false)
+      setLanguagesSelected([]);
+      setLoading(false);
     }
 
     if (response.statusCode === 400) {
@@ -81,11 +82,12 @@ export default function AddLanguageToProjectDialog({
       });
     }
 
+    setOpen(false);
     setLoading(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} modal={true} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
         <Button className={`${widthFull && "w-full"}`}>
           {icon && icon} {triggerText}
@@ -119,17 +121,13 @@ export default function AddLanguageToProjectDialog({
         </ScrollArea>
 
         <DialogFooter>
-          <DialogClose className="w-full">
-            <Button
-              className="w-full transition"
-              onClick={handleSendToApi}
-              disabled={
-                languagesSelected.length >= 1 && !loading ? false : true
-              }
-            >
-              Adicionar
-            </Button>
-          </DialogClose>
+          <Button
+            className="w-full transition"
+            onClick={handleSendToApi}
+            disabled={languagesSelected.length >= 1 && !loading ? false : true}
+          >
+            Adicionar
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

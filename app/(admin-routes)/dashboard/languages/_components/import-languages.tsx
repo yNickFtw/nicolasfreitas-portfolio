@@ -24,6 +24,7 @@ interface IProps {
   widthFull: boolean;
   icon: ReactNode;
   languages: ILanguage[];
+  handleChangeModal?: Function
 }
 
 interface IJSONLanguages {
@@ -37,6 +38,7 @@ export default function ImportLanguages({
   widthFull,
   icon,
   languages,
+  handleChangeModal
 }: IProps) {
   const [file, setFile] = useState<any>(null);
   const [JSONLanguages, setJSONLanguages] = useState<IJSONLanguages[]>([]);
@@ -134,7 +136,9 @@ export default function ImportLanguages({
       });
 
       setOpen(false);
-
+      if(handleChangeModal) {
+        handleChangeModal();
+      }
       router.refresh();
     }
 

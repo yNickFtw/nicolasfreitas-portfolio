@@ -20,17 +20,20 @@ interface IProps {
   triggerText: string;
   widthFull: boolean;
   icon: ReactNode;
+  handleModalChange?: Function
 }
 
 export default function AddLanguageDialog({
   triggerText,
   widthFull,
   icon,
+  handleModalChange
 }: IProps) {
   const [name, setName] = useState<string>("");
   const [iconLanguage, setIcon] = useState<string>("");
   const [slug, setSlug] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const languageService = new LanguageService();
   const router = useRouter();
@@ -58,9 +61,16 @@ export default function AddLanguageDialog({
       });
       router.refresh();
       
+      setOpen(false)
+
+      if(handleModalChange) {
+        handleModalChange();
+      }
+
       setName("");
       setIcon("")
       setSlug("")
+
     }
 
     if (response.statusCode === 400) {
@@ -74,7 +84,7 @@ export default function AddLanguageDialog({
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} modal={true} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
         <Button className={`${widthFull && "w-full"}`}>
           {icon && icon} {triggerText}
