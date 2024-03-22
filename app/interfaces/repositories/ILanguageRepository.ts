@@ -5,4 +5,6 @@ export interface ILanguageRepository {
     countLanguages(): Promise<number>;
     findAllLanguages(): Promise<ILanguage[]>;
     findAllLanguagesExceptByLanguageId(languageIds: string[]): Promise<ILanguage[]>
+    delete(languageId: string): Promise<void>;
+    findById(languageId: string): Promise<ILanguage | null>;
 }

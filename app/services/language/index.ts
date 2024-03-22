@@ -20,4 +20,14 @@ export default class LanguageService extends AppError {
         }
     }
 
+    public async delete(languageId: string): Promise<IApiResponse> {
+        try {
+            const response = await api.delete(`/api/language/remove/${languageId}`);
+
+            return { statusCode: response.status, data: response.data };
+        } catch (error) {
+            return this.appError.handleErrorResponse(error);
+        }
+    }
+
 }

@@ -1,8 +1,10 @@
 import HeaderDashboard from "@/app/components/header-dashboard";
 import LanguageRepository from "@/app/repositories/language-repository";
 import LanguageCard from "./_components/LanguageCard";
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, UploadIcon } from "lucide-react";
 import AddLanguageDialog from "./_components/add-language-dialog";
+import ExportLanguages from "./_components/export-languages";
+import ImportLanguages from "./_components/import-languages";
 
 export default async function Languages() {
   const languageRepository = new LanguageRepository();
@@ -17,11 +19,17 @@ export default async function Languages() {
         <header className="w-full flex flex-row justify-between items-center p-2">
           <h2 className="text-xl font-semibold">Todas as linguagens</h2>
 
-          <AddLanguageDialog
-            triggerText="Adicionar"
-            widthFull={false}
-            icon={<PlusIcon />}
-          />
+          <section className="flex flex-row items-center gap-3">
+            <ImportLanguages languages={languages} icon={<UploadIcon />} triggerText="Importar linguagens" widthFull={false} />
+
+            <ExportLanguages languages={languages} icon={<UploadIcon />} triggerText="Exportar linguagens" widthFull={false} />
+
+            <AddLanguageDialog
+              triggerText="Adicionar"
+              widthFull={false}
+              icon={<PlusIcon />}
+            />
+          </section>
         </header>
 
         <div className="w-full flex flex-row flex-wrap justify-center gap-2 p-2">

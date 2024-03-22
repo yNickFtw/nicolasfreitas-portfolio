@@ -39,4 +39,20 @@ export default class LanguageRepository implements ILanguageRepository {
         return languages;
     }
 
+    public async delete(languageId: string): Promise<void> {
+        await prisma.languages.delete({
+            where: { id: languageId }
+        })
+
+        return
+    }
+
+    public async findById(languageId: string): Promise<ILanguage | null> {
+        const language = await prisma.languages.findUnique({
+            where: { id: languageId }
+        })
+
+        return language;
+    }
+
 }
