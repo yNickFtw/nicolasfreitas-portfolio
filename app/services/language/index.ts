@@ -30,4 +30,14 @@ export default class LanguageService extends AppError {
         }
     }
 
+    public async import(languages: { name: string, icon: string, slug: string }[]): Promise<IApiResponse> {
+        try {
+            const response = await api.post(`/api/language/import`, { languages })
+
+            return { statusCode: response.status, data: response.data };
+        } catch (error) {
+            return this.appError.handleErrorResponse(error);
+        }
+    }
+
 }
