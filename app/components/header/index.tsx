@@ -23,7 +23,7 @@ export default function Header({ isLogged }: IProps) {
       </div>
 
       <div className="md:hidden">
-        <MobileMenu />
+        <MobileMenu isLogged={isLogged} />
       </div>
     </header>
   );

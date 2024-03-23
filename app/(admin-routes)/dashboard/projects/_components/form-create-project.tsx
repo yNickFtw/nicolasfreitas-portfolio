@@ -31,10 +31,7 @@ export default function FormCreateProject() {
       slug
     }
 
-    const response = await projectService.create(newProject)
-
-    console.log(response);
-    
+    const response = await projectService.create(newProject)    
 
     if(response.statusCode === 201) {
       toast({

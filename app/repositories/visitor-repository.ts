@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma";
 import { IVisitor } from "../interfaces/models/IVisitor";
 import { IVisitorRepository } from "../interfaces/repositories/IVisitorRepository";
+import { IGetPaginatedItems } from "../interfaces/promises/IGetPaginatedItems";
 
 export default class VisitorRepository implements IVisitorRepository {
     public async create(): Promise<IVisitor> {
@@ -22,4 +23,21 @@ export default class VisitorRepository implements IVisitorRepository {
             }
         })
     }
+
+    public async getPaginatedItems(page: number, pageSize: number): Promise<IGetPaginatedItems> {
+        const offset = (page - 1) * pageSize;
+
+        const visitors = await prisma.visitor.findMany({
+            take: pageSize,
+            skip: offset,
+            include: {
+                visits: true
+            }
+        })
+
+        const count = await prisma.visitor.count({})
+
+        return { count: count, visitors: visitors };
+    }
+
 }

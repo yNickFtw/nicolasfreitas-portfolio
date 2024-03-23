@@ -38,9 +38,6 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({ message: "Projeto criado com sucesso", description: "Agora finalize os últimos detalhes", project: project }, { status: 201 })
     } catch (error: any) {
-        console.log(error);
-        
-
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })
     }
 }

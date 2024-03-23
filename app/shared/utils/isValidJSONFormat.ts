@@ -30,7 +30,6 @@ export function isValidJSONFormat(JsonArray: string | any[], isJson: boolean): b
 
         return true
     } catch (error) {
-        console.log(error);
         return false
     }
 }

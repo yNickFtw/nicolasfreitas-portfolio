@@ -41,8 +41,6 @@ export async function DELETE(request: NextRequest, { params }: IParams) {
         return NextResponse.json({ message: "Linguagem deletada com sucesso." }, { status: 200 })
 
     } catch (error) {
-        console.log(error);
-
         return NextResponse.json({ message: "Internal server error" }, { status: 500 })
     }
 }

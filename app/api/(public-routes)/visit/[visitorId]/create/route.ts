@@ -29,9 +29,6 @@ export async function POST(request: NextRequest, { params }: IProps) {
 
         return NextResponse.json({ message: "Visita registrada com sucesso" }, { status: 201 })
     } catch (error) {
-        console.log(error);
-        
-
         return NextResponse.json({ message: "Internal server error" }, { status: 500 })
     }
 }

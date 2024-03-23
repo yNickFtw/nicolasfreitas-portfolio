@@ -59,7 +59,6 @@ export default class VisitRepository implements IVisitRepository {
                 lastVisitInLessThanAnHour: false
             }
         } catch (error) {
-            console.log(error);
             throw error
         }
     }
