@@ -73,7 +73,7 @@ export default function MobileMenu({ isLogged }: IProps) {
                   Conhecimentos
                 </Button>
               </a>
-              <a href="#" className="py-2">
+              <a href="#" className="py-2 w-full">
                 <Button
                   className="w-full"
                   variant={"ghost"}
@@ -82,7 +82,7 @@ export default function MobileMenu({ isLogged }: IProps) {
                   Projetos
                 </Button>
               </a>
-              <a href="#" className="py-2">
+              <a href="#" className="py-2 w-full">
                 <Button
                   className="w-full"
                   variant={"ghost"}
@@ -92,7 +92,7 @@ export default function MobileMenu({ isLogged }: IProps) {
                 </Button>
               </a>
               {isLogged && (
-                <Link href="/dashboard/overview" className="py-2">
+                <Link href="/dashboard/overview" className="py-2 w-full">
                   <Button className="w-full" variant={"ghost"}>
                     Dashboard
                   </Button>

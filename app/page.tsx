@@ -16,12 +16,6 @@ export default async function Home() {
         <Header isLogged={!!session} />
         <Hero />
       </div>
-
-
-
-      <section id="knowledge" className="mt-[500px]">
-        <h1>teste</h1>
-      </section>
     </main>
     </>
   );
