@@ -31,8 +31,16 @@ export default class VisitorRepository implements IVisitorRepository {
             take: pageSize,
             skip: offset,
             include: {
-                visits: true
-            }
+                visits: {
+                    take: 1,
+                    orderBy: {
+                        visitDate: 'asc'
+                    }
+                },
+            },
+            orderBy: {
+                firstVisit: 'desc'
+            },
         })
 
         const count = await prisma.visitor.count({})

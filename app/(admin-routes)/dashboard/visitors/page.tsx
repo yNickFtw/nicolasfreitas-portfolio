@@ -1,7 +1,6 @@
 import HeaderDashboard from "@/app/components/header-dashboard";
 import VisitorRepository from "@/app/repositories/visitor-repository";
 import TableVisitors from "./_components/table-visitors";
-import { redirect } from "next/navigation";
 
 interface IProps {
   params: {};
