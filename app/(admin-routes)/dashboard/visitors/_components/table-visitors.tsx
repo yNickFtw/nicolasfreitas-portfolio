@@ -53,7 +53,7 @@ export default function TableVisitors({
   }
 
   return (
-    <section>
+    <section className="z-0">
       <Table>
         <TableCaption>Todas as linguages do projeto</TableCaption>
         <TableHeader>

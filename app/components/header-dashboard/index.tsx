@@ -6,7 +6,7 @@ export default async function HeaderDashboard() {
   return (
     <>
       <header
-        className="w-full sticky top-0 m-auto p-2 border-b  dark:border-b-zinc-800"
+        className="w-full z-[9999] sticky top-0 m-auto p-2 border-b  dark:border-b-zinc-800"
         style={{ backdropFilter: "blur(10px)" }}
       >
         <div className="max-w-7xl m-auto flex justify-between items-center">
