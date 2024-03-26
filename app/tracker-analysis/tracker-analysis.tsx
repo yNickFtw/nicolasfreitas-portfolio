@@ -46,6 +46,7 @@ export default function TrackerAnalysis({ session }: IProps) {
           const response = await visitorService.findByVisitorId(visitorId);
 
           if (response.statusCode === 404) {
+            await handleCreateNewVisitor()
           }
         }
 
