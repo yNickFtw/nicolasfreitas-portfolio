@@ -16,6 +16,16 @@ export default function TrackerAnalysis({ session }: IProps) {
   const visitorService = new VisitorService();
   const visitService = new VisitService();
 
+  async function handleCreateNewVisitor(): Promise<string> {
+    const response = await visitorService.create();
+
+    if (response.statusCode === 201) {
+      localStorage.setItem("visitorId", response.data.visitor.id!);
+    }
+
+    return response.data.visitor.id!;
+  }
+
   useEffect(() => {
     async function execute() {
       const userAgent = navigator.userAgent;
@@ -23,7 +33,6 @@ export default function TrackerAnalysis({ session }: IProps) {
       if (session) {
         return;
       } else {
-
         let special_code: string | null;
 
         if (searchParams.has("code")) special_code = searchParams.get("code");
@@ -31,20 +40,12 @@ export default function TrackerAnalysis({ session }: IProps) {
         let visitorId = localStorage.getItem("visitorId");
 
         if (!visitorId) {
-          const response = await visitorService.create();
+          visitorId = await handleCreateNewVisitor();
+        } else {
+          // check if user exists
+          const response = await visitorService.findByVisitorId(visitorId);
 
-          if (response.statusCode === 201) {
-            toast({
-              title: response.data.message,
-            });
-
-            visitorId = response.data.visitor.id;
-
-            localStorage.setItem("visitorId", response.data.visitor.id);
-          }
-
-          if (response.statusCode !== 201) {
-            return;
+          if (response.statusCode === 404) {
           }
         }
 

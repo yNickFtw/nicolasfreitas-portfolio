@@ -11,11 +11,21 @@ export default class VisitorService extends AppError {
         this.appError = new AppError();
     }
 
-    public async create(): Promise<IApiResponse> {
+    public async create(): Promise<IApiResponse<{ message: string, visitor: IVisitor }>> {
         try {
             const response = await api.post(`/api/visitor/create`, null) 
 
             return { statusCode: response.status, data: response.data };
+        } catch (error) {
+            return this.appError.handleErrorResponse(error);
+        }
+    }
+
+    public async findByVisitorId(visitorId: string): Promise<IApiResponse<IVisitor>> {
+        try {
+            const response = await api.get(`/api/visitor/${visitorId}`)
+
+            return { statusCode: response.status, data: response.data }
         } catch (error) {
             return this.appError.handleErrorResponse(error);
         }

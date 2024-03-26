@@ -10,13 +10,14 @@ export default async function Home() {
 
   return (
     <>
-    <TrackerAnalysis session={!!session} />
-    <main className="max-w-7xl m-auto">
-      <div className="flex flex-col">
+      <TrackerAnalysis session={!!session} />
+      <main className="max-w-7xl m-auto">
         <Header isLogged={!!session} />
-        <Hero />
-      </div>
-    </main>
+
+        <div className="w-full h-screen flex justify-center items-center">
+          <Hero />
+        </div>
+      </main>
     </>
   );
 }

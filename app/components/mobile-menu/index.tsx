@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -52,9 +54,9 @@ export default function MobileMenu({ isLogged }: IProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-64 dark:bg-zinc-950 bg-white shadow-lg"
+            className="fixed inset-y-0 right-0 w-64  shadow-lg"
           >
-            <nav className="w-full flex flex-col items-start p-4">
+            <nav className="w-full h-screen flex flex-col items-start dark:bg-zinc-950 bg-white p-4">
               <a href="#" className="py-2 w-full">
                 <Button
                   className="w-full"
